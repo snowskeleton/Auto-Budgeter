@@ -1,12 +1,15 @@
 #!/bin/ruby
+
 require 'ynab'
+require 'sqlite3'
+require_relative 'user_input.rb'
+require_relative 'budget.rb'
+require_relative 'ynab.rb'
+require_relative 'misc.rb'
 
-access_token = File.read("access_token")
-ynab_api = YNAB::API.new(access_token)
 
-budget_response = ynab_api.budgets.get_budgets
-budgets = budget_response.data.budgets
 
-budgets.each do |budget|
-  puts "Budget Name: #{budget.id}"
-end
+
+
+YNABAPI.prereqs()
+Budget.which_budget()
